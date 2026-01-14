@@ -10,20 +10,24 @@ Add the marketplace to Claude Code:
 claude plugin marketplace add lleverage-ai/lleverage-dev-skills
 ```
 
-Install a plugin:
+Install the dev-bot plugin:
 
 ```bash
-claude plugin install code-review@lleverage-dev-skills
+claude plugin install dev-bot@lleverage-dev-skills
 ```
 
 ## Plugins
 
-### code-review
+### dev-bot
 
-Automated code review for pull requests using multiple specialized agents with confidence-based scoring.
+Lleverage dev-bot skills for Claude Code development workflows.
+
+#### Commands
+
+- `/dev-bot:code-review` - Automated code review for pull requests using multiple specialized agents with confidence-based scoring
 
 ```bash
-/code-review https://github.com/owner/repo/pull/123
+/dev-bot:code-review https://github.com/owner/repo/pull/123
 ```
 
 ## Development
@@ -31,5 +35,5 @@ Automated code review for pull requests using multiple specialized agents with c
 To test plugins locally:
 
 ```bash
-claude plugin install /path/to/agent-skills/plugins/code-review --scope user
+claude plugin install /path/to/lleverage-dev-skills/plugins/dev-bot --scope user
 ```

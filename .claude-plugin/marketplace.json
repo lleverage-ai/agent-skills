@@ -7,13 +7,13 @@
   },
   "plugins": [
     {
-      "name": "code-review",
-      "description": "Automated code review for pull requests using multiple specialized agents with confidence-based scoring",
+      "name": "dev-bot",
+      "description": "Lleverage dev-bot skills for Claude Code development workflows",
       "author": {
         "name": "Lleverage",
         "email": "hello@lleverage.ai"
       },
-      "source": "./plugins/code-review",
+      "source": "./plugins/dev-bot",
       "category": "productivity"
     }
   ]

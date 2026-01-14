@@ -1,8 +1,0 @@
-{
-  "name": "code-review",
-  "description": "Lleverage code review for pull requests using multiple specialized agents with confidence-based scoring",
-  "author": {
-    "name": "Lleverage",
-    "email": "hello@lleverage.ai"
-  }
-}
