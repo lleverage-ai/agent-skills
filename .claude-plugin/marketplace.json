@@ -8,7 +8,13 @@
   "plugins": [
     {
       "name": "code-review",
-      "source": "plugins/code-review"
+      "description": "Automated code review for pull requests using multiple specialized agents with confidence-based scoring",
+      "author": {
+        "name": "Lleverage",
+        "email": "hello@lleverage.ai"
+      },
+      "source": "./plugins/code-review",
+      "category": "productivity"
     }
   ]
 }
