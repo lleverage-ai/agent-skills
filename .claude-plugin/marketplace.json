@@ -1,0 +1,14 @@
+{
+  "name": "agent-skills",
+  "description": "Lleverage agent skills for development workflows",
+  "owner": {
+    "name": "Lleverage",
+    "email": "hello@lleverage.ai"
+  },
+  "plugins": [
+    {
+      "name": "code-review",
+      "source": "plugins/code-review"
+    }
+  ]
+}
