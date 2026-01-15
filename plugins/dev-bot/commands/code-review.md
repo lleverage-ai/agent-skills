@@ -13,13 +13,20 @@ Arguments:
 
 1. **Eligibility check** (skip if `--force`): Use a Haiku agent to check if the PR is closed or already has your review. Draft PRs are allowed.
 
-2. **Fetch PR details**: Get the PR diff and metadata using `gh pr view` and `gh pr diff`.
+2. **Fetch PR details**: Get the PR diff and metadata using `gh pr view` and `gh pr diff`. Count the number of files changed and identify which services/packages are affected.
 
-3. **Review the changes**: Launch 2 parallel Sonnet agents:
+3. **Review the changes**: The number of agents scales based on PR size:
+
+   **Small PRs (≤10 files)**: Launch 2 parallel Opus agents:
    - **Agent 1 (Logic & Bugs)**: Scan for logic errors, bugs, edge cases, and incorrect assumptions
-   - **Agent 2 (Security & Best Practices)**: Check for security issues, race conditions, and anti-patterns
+   - **Agent 2 (Security)**: Check for OWASP Top 10 vulnerabilities (injection, broken auth, sensitive data exposure, XXE, broken access control, security misconfiguration, XSS, insecure deserialization, vulnerable components, insufficient logging), race conditions, and anti-patterns
 
-   Each agent returns issues with: file path, line number, category, description, and suggested fix if applicable.
+   **Large PRs (>10 files)**: Split review by service/package, launching parallel Opus agents:
+   - One agent per affected service/package (e.g., `apps/app`, `packages/workflow-engine`, etc.)
+   - Each agent reviews ALL categories (logic, bugs, security/OWASP Top 10, race conditions) for their assigned files
+   - This allows more thorough analysis when there are many changes
+
+   Each agent returns issues with: file path, line number, category, description, and suggested fix if applicable. **Finding no issues is a valid outcome** - do not force issues where none exist.
 
 4. **Filter issues**: Keep only high-confidence issues (score 75+). Discard:
    - Pre-existing issues (not introduced by this PR)
@@ -134,7 +141,7 @@ Use these exact category names:
 | Category | Use for |
 |----------|---------|
 | `logic` | Logic errors, incorrect conditions, wrong assumptions |
-| `security` | Vulnerabilities, injection risks, auth issues |
+| `security` | OWASP Top 10 vulnerabilities (injection, broken auth, XSS, etc.) |
 | `error-handling` | Missing or incorrect error handling |
 | `race-condition` | Concurrency issues, race conditions |
 | `perf` | Significant performance issues |
