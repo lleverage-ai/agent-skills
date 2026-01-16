@@ -4,5 +4,6 @@
   "author": {
     "name": "Lleverage",
     "email": "hello@lleverage.ai"
-  }
+  },
+  "commands": "./commands/"
 }
